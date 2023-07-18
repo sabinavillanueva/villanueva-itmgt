@@ -37,7 +37,24 @@ def shift_letter(letter, shift):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+
+ if letter == ' ':
+    return ' '
+ elif letter.islower():
+    return "uppercase please!"
+ else:
+    alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    letter = alphabet.index(letter)
+    alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    letter_index = alphabet.index(letter)
+    shifted_index = (letter_index + shift) % 26
+    shifted_letter = alphabet[shifted_index]
+    return shifted_letter
+
+letter = input("Enter an uppercase letter from the alphabet: ")
+shift = int(input("How many times would you like to shift? Enter here: "))
+print(shift_letter(letter, shift))
+
 
 def caesar_cipher(message, shift):
     '''Caesar Cipher.
@@ -59,7 +76,24 @@ def caesar_cipher(message, shift):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+
+        alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        letter_index = alphabet.index(letter)
+        shifted_index = (letter_index + shift) % 26
+        shifted_letter = alphabet[shifted_index]
+    return shifted_letter
+
+    shifted_message = ''
+    for char in message:
+        shifted_char = shift_letter(char, shift)
+        shifted_message += shifted_char   
+    return shifted_message
+
+your_message = input("Enter message here: ")
+message = your_message.upper()
+shift = int(input("How many times would you life to shift? Enter here: "))
+print(caesar_cipher(message, shift))
+
 
 def shift_by_letter(letter, letter_shift):
     '''Shift By Letter.
@@ -89,7 +123,30 @@ def shift_by_letter(letter, letter_shift):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+
+def shift_letter(letter, shift):
+    if letter == ' ':
+        return ' '
+    elif letter.islower() or letter_shift.islower():
+        return "uppercase please!"
+    else:
+        alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        letter_index = alphabet.index(letter)
+        shifted_index = (letter_index + shift) % 26
+        shifted_letter = alphabet[shifted_index]
+        return shifted_letter
+
+    shifted_message = ''
+    for char in message:
+        shifted_char = shift_letter(char, shift)
+        shifted_message += shifted_char
+    return shifted_message
+
+message = input("Please enter an uppercase letter from the alphabet: ")
+shift = input("Please enter another uppercase letter from the alphabet: ")
+result = shift_message(message, shift)
+print(result)
+
 
 def vigenere_cipher(message, key):
     '''Vigenere Cipher.
@@ -122,7 +179,28 @@ def vigenere_cipher(message, key):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+
+    message = message.upper()
+    key = key.upper()
+    message = message.replace(" ", "")
+    key = (key * (len(message) // len(key) + 1))[:len(message)]
+    alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    encrypted_message = ''
+
+    for i in range(len(message)):
+        message_letter = message[i]
+        key_letter = key[i]
+        key_index = alphabet.index(key_letter)
+        message_index = alphabet.index(message_letter)
+        shifted_index = (message_index + key_index) % 26
+        shifted_letter = alphabet[shifted_index]
+        encrypted_message += shifted_letter
+    return encrypted_message
+
+message = input(("Enter message: "))
+key = input(("Enter key: "))
+print(vigenere_cipher(message, key))
+
 
 def scytale_cipher(message, shift):
     '''Scytale Cipher.
@@ -176,7 +254,15 @@ def scytale_cipher(message, shift):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+
+    if len(message) % shift != 0:
+    message += '_' * (shift - len(message) % shift)
+    encoded_m = ''
+    for i in range(len(message)):
+        encoded_i = (i // shift) + (len(message) // shift) * (i % shift)
+        encoded_m += message[encoded_i]
+    return encoded_m
+
 
 def scytale_decipher(message, shift):
     '''Scytale De-cipher.
@@ -205,4 +291,13 @@ def scytale_decipher(message, shift):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+
+    num_rows = len(message) % shift
+    scytale_rows = [''] * num_rows
+    for i in range(len(message)):
+        row_index = i % num_rows
+        scytale_rows[row_index] += message[i]
+    decoded_message = ''
+    for row in scytale_rows:
+        decoded_message += row
+    return decoded_message
