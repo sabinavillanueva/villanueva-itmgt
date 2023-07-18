@@ -167,4 +167,18 @@ def body_mass_index(weight, height):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+
+weight_kg = weight * 0.453592
+height_feet, height_inches = height
+height_meters = (height_feet * 12 + height_inches) * 0.0254
+
+bmi = weight_kg / (height_meters ** 2)
+return bmi
+
+weight_pounds = float(input("In pounds, enter weight: "))
+height_feet = int(input("Enter height (feet): "))
+height_inches = int(input("Enter height (inches): "))
+height = [height_feet, height_inches]
+
+bmi = body_mass_index(weight_pounds, height)
+print(f"The BMI is: {bmi:.2f}")
