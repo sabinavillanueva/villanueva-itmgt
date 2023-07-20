@@ -41,8 +41,18 @@ def relationship_status(from_member, to_member, social_graph):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
 
+def relationship_status(from_member, to_member, social_graph):
+    if to_member in social_graph.get(from_member, []):
+        if from_member in social_graph.get(to_member, []):
+            return "friends"
+        else:
+            return "follower"
+    elif from_member in social_graph.get(to_member, []):
+        return "followed by"
+    else:
+        return "no relationship"
+        
 
 def tic_tac_toe(board):
     '''Tic Tac Toe.
@@ -70,7 +80,30 @@ def tic_tac_toe(board):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+
+def check_winner(symbol, board):
+    size = len(board)
+    for i in range(size):
+        # ROWS AND COLUMNS
+        if all(board[i][j] == symbol for j in range(size)):
+            return True
+        if all(board[j][i] == symbol for j in range(size)):
+            return True
+
+    # DIAGONALS
+    if all(board[i][i] == symbol for i in range(size)):
+        return True
+    if all(board[i][size - i - 1] == symbol for i in range(size)):
+        return True
+
+    return False
+
+def tic_tac_toe(board):
+    for symbol in set(symbol for row in board for symbol in row):
+        if check_winner(symbol, board):
+            return symbol
+    return "NO WINNER"
+
 
 def eta(first_stop, second_stop, route_map):
     '''ETA.
@@ -103,4 +136,21 @@ def eta(first_stop, second_stop, route_map):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+
+def eta(first_stop, second_stop, route_map):
+    def find_path(stop, target_stop, path, visited):
+        if stop == target_stop:
+            return path
+
+        for next_stop in route_map[stop]:
+            if next_stop not in visited:
+                visited.add(next_stop)
+                result = find_path(next_stop, target_stop, path + 1, visited)
+                if result:
+                    return result
+
+        return None
+
+    path = find_path(first_stop, second_stop, 0, set())
+    return path if path is not None else -1
+
