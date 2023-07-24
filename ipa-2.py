@@ -51,10 +51,6 @@ def shift_letter(letter, shift):
     shifted_letter = alphabet[shifted_index]
     return shifted_letter
 
-letter = input("Enter an uppercase letter from the alphabet: ")
-shift = int(input("How many times would you like to shift? Enter here: "))
-print(shift_letter(letter, shift))
-
 
 def caesar_cipher(message, shift):
     '''Caesar Cipher.
@@ -77,10 +73,10 @@ def caesar_cipher(message, shift):
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
 
-        alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        letter_index = alphabet.index(letter)
-        shifted_index = (letter_index + shift) % 26
-        shifted_letter = alphabet[shifted_index]
+    alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    letter_index = alphabet.index(letter)
+    shifted_index = (letter_index + shift) % 26
+    shifted_letter = alphabet[shifted_index]
     return shifted_letter
 
     shifted_message = ''
@@ -88,11 +84,6 @@ def caesar_cipher(message, shift):
         shifted_char = shift_letter(char, shift)
         shifted_message += shifted_char   
     return shifted_message
-
-your_message = input("Enter message here: ")
-message = your_message.upper()
-shift = int(input("How many times would you life to shift? Enter here: "))
-print(caesar_cipher(message, shift))
 
 
 def shift_by_letter(letter, letter_shift):
@@ -141,11 +132,6 @@ def shift_letter(letter, shift):
         shifted_char = shift_letter(char, shift)
         shifted_message += shifted_char
     return shifted_message
-
-message = input("Please enter an uppercase letter from the alphabet: ")
-shift = input("Please enter another uppercase letter from the alphabet: ")
-result = shift_message(message, shift)
-print(result)
 
 
 def vigenere_cipher(message, key):
@@ -196,11 +182,7 @@ def vigenere_cipher(message, key):
         shifted_letter = alphabet[shifted_index]
         encrypted_message += shifted_letter
     return encrypted_message
-
-message = input(("Enter message: "))
-key = input(("Enter key: "))
-print(vigenere_cipher(message, key))
-
+    
 
 def scytale_cipher(message, shift):
     '''Scytale Cipher.
